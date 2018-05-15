@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Drag and drop</title>
+    <style type="text/css">
+    .container {
+        background: red;
+        margin-bottom: 10px;
+        height: 150px;
+        width: 150px;
+        text-align: center;
+    }
+
+    .box {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-family: sans-serif;
+        font-size: 1.25em;
+        background: #5CB9E2;
+        margin-right: 10px;
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: opacity .25s ease-out, -webkit-transform .25s ease-out;
+        transition: opacity .25s ease-out, transform .25s ease-out;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box" draggable="true"><a href="#">One</a></div>
+    </div>
+    <div class="container">
+    </div>
+    <script type="text/javascript">
+    const box = document.getElementsByClassName('box')[0]
+    const containers = document.getElementsByClassName('container')
+    for (const container of containers) {
+        container.addEventListener("dragover", dragover)
+        container.addEventListener("dragenter", dragenter)
+        container.addEventListener("drop", drop)
+    }
+
+    function dragover(e) {
+    	console.log('her eie ', 1);
+        e.preventDefault()
+    }
+
+    function dragenter(e) {
+    	console.log(e, 'after e');
+        e.preventDefault()
+    }
+
+    function drop() {
+        this.append(box)
+    }
+    </script>
+</body>
+
+</html>
